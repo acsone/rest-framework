@@ -44,7 +44,7 @@ class RestServiceRegistation(models.AbstractModel):
     _description = "REST Services Registration Model"
 
     @api.model_cr
-    def _register_hook(self):
+    def _register_registry(self):
         # This method is called by Odoo when the registry is built,
         # so in case the registry is rebuilt (cache invalidation, ...),
         # we have to to rebuild the registry. We use a new
