@@ -5,14 +5,12 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-def post_init_hook(cr, version):
-    """Preserve log entries from old implementation in shopfloor.
-    """
-    cr.execute("SELECT 1 FROM pg_class WHERE relname = 'shopfloor_log'")
-    if not cr.fetchone():
-        # shopfloor_log was already removed
+def pre_init_hook(cr):
+    """On first install copy recods from shopfloor_log table if available."""
+    cr.execute("SELECT 1 FROM pg_class WHERE relname = 'rest_log'")
+    if cr.fetchone():
+        # rest_log was already installed
         return
-
     _logger.info("Copy shopfloor.log records to rest.log")
     cr.execute(
         """
