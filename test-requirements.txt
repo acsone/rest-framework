@@ -1,1 +1,2 @@
 httpx
+odoo-addon-auth_jwt @ git+https://github.com/oca/server-auth@refs/pull/520/head#subdirectory=setup/auth_jwt
