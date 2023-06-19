@@ -15,7 +15,7 @@ class TestEndToEnd(tests.HttpCase):
         super().setUpClass()
         cls.env.ref(
             "fastapi_auth_jwt_demo.fastapi_endpoint_auth_jwt_demo"
-        ).action_sync_registry()
+        )._handle_registry_sync()
 
     def _get_token(self, aud=None, email=None):
         validator = self.env["auth.jwt.validator"].search([("name", "=", "demo")])
