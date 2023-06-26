@@ -273,7 +273,7 @@ class TestDBLoggingExceptionBase(
             expected = {
                 "collection": service._collection,
                 "state": "failed",
-                "result": "null",
+                "result": False,
                 "exception_name": exc_name,
                 "exception_message": "Failed as you wanted!",
                 "severity": severity,
