@@ -1,2 +1,4 @@
 promise # Needed by graphene.test.Client
 httpx
+odoo14-addon-auth_jwt @ git+https://github.com/OCA/server-auth@refs/pull/531/head#subdirectory=setup/auth_jwt
+odoo14-addon-auth_jwt_demo @ git+https://github.com/OCA/server-auth@refs/pull/531/head#subdirectory=setup/auth_jwt_demo
