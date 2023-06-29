@@ -18,6 +18,7 @@ from fastapi.testclient import TestClient
 
 from ..context import odoo_env_ctx
 from ..dependencies import authenticated_partner_impl
+from ..fastapi_dispatcher import patch_odoo_environment
 
 
 @tagged("post_install", "-at_install")
@@ -88,23 +89,24 @@ class FastAPITransactionCase(SavepointCase):
         not raise the exception, but will return it in the response and the
         exception handlers will be called.
         """
-        env = env or self.default_fastapi_odoo_env
-        user = user or self.default_fastapi_running_user
-        dependencies = self.default_fastapi_dependency_overrides.copy()
-        if dependency_overrides:
-            dependencies.update(dependency_overrides)
-        if user:
-            env = env(user=user)
-        partner = partner or self.default_fastapi_authenticated_partner
-        if partner:
-            dependencies[authenticated_partner_impl] = partial(lambda a: a, partner)
-        app = app or self.default_fastapi_app or FastAPI()
-        router = router or self.default_fastapi_router
-        if router:
-            app.include_router(router)
-        app.dependency_overrides = dependencies
-        ctx_token = odoo_env_ctx.set(env)
-        try:
-            yield TestClient(app, raise_server_exceptions=raise_server_exceptions)
-        finally:
-            odoo_env_ctx.reset(ctx_token)
+        with patch_odoo_environment():
+            env = env or self.default_fastapi_odoo_env
+            user = user or self.default_fastapi_running_user
+            dependencies = self.default_fastapi_dependency_overrides.copy()
+            if dependency_overrides:
+                dependencies.update(dependency_overrides)
+            if user:
+                env = env(user=user)
+            partner = partner or self.default_fastapi_authenticated_partner
+            if partner:
+                dependencies[authenticated_partner_impl] = partial(lambda a: a, partner)
+            app = app or self.default_fastapi_app or FastAPI()
+            router = router or self.default_fastapi_router
+            if router:
+                app.include_router(router)
+            app.dependency_overrides = dependencies
+            ctx_token = odoo_env_ctx.set(env)
+            try:
+                yield TestClient(app, raise_server_exceptions=raise_server_exceptions)
+            finally:
+                odoo_env_ctx.reset(ctx_token)
