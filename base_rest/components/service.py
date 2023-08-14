@@ -151,7 +151,7 @@ class BaseRestService(AbstractComponent):
         :return:
         """
         method = getattr(self, method_name, object())
-        params = params or {}
+        params = params or request.get_json_data() or {}
         secure_params = self._prepare_input_params(method, params)
         if isinstance(secure_params, dict):
             # for backward compatibility methods expecting json params
