@@ -15,7 +15,10 @@ from fastapi import APIRouter, FastAPI
 from fastapi.testclient import TestClient
 
 from ..context import odoo_env_ctx
-from ..dependencies import authenticated_partner_impl
+from ..dependencies import (
+    authenticated_partner_impl,
+    optionally_authenticated_partner_impl,
+)
 
 
 @tagged("post_install", "-at_install")
@@ -99,6 +102,9 @@ class FastAPITransactionCase(TransactionCase):
             or self.env["res.partner"]
         )
         dependencies[authenticated_partner_impl] = partial(lambda a: a, partner)
+        dependencies[optionally_authenticated_partner_impl] = partial(
+            lambda a: a, partner
+        )
         app = app or self.default_fastapi_app or FastAPI()
         router = router or self.default_fastapi_router
         if router:
