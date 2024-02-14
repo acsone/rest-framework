@@ -17,6 +17,7 @@ from odoo.addons.component.core import AbstractComponent
 
 from ..exceptions import (
     RESTServiceDispatchException,
+    RESTServiceMissingErrorException,
     RESTServiceUserErrorException,
     RESTServiceValidationErrorException,
 )
@@ -43,6 +44,14 @@ class BaseRESTService(AbstractComponent):
         try:
             with self.env.cr.savepoint():
                 result = super().dispatch(method_name, *args, params=params)
+        except exceptions.MissingError as orig_exception:
+            self._dispatch_exception(
+                method_name,
+                RESTServiceMissingErrorException,
+                orig_exception,
+                *args,
+                params=params,
+            )
         except exceptions.ValidationError as orig_exception:
             self._dispatch_exception(
                 method_name,
