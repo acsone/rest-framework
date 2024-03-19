@@ -5,6 +5,11 @@ import os
 import unittest
 
 from odoo.tests.common import HttpCase
+from odoo.tools import mute_logger
+
+from fastapi import status
+
+from ..schemas import DemoExceptionType
 
 
 @unittest.skipIf(os.getenv("SKIP_HTTP_CASE"), "EndpointHttpCase skipped")
@@ -48,3 +53,71 @@ class FastAPIHttpCase(HttpCase):
         response = self.url_open(route, timeout=20)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(int(response.content), nbr_retries)
+
+    @mute_logger("odoo.http")
+    def assert_exception_processed(
+        self,
+        exception_type: DemoExceptionType,
+        error_message: str,
+        expected_message: str,
+        expected_status_code: int,
+    ) -> None:
+        route = (
+            "/fastapi_demo/demo/exception?"
+            f"exception_type={exception_type.value}&error_message={error_message}"
+        )
+        response = self.url_open(route)
+        self.assertDictEqual(
+            response.json(),
+            {
+                "detail": expected_message,
+            },
+        )
+
+    def test_user_error(self) -> None:
+        self.assert_exception_processed(
+            exception_type=DemoExceptionType.user_error,
+            error_message="test",
+            expected_message="test",
+            expected_status_code=status.HTTP_400_BAD_REQUEST,
+        )
+
+    def test_validation_error(self) -> None:
+        self.assert_exception_processed(
+            exception_type=DemoExceptionType.validation_error,
+            error_message="test",
+            expected_message="test",
+            expected_status_code=status.HTTP_400_BAD_REQUEST,
+        )
+
+    def test_bare_exception(self) -> None:
+        self.assert_exception_processed(
+            exception_type=DemoExceptionType.bare_exception,
+            error_message="test",
+            expected_message="Internal Server Error",
+            expected_status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
+
+    def test_access_error(self) -> None:
+        self.assert_exception_processed(
+            exception_type=DemoExceptionType.access_error,
+            error_message="test",
+            expected_message="AccessError",
+            expected_status_code=status.HTTP_403_FORBIDDEN,
+        )
+
+    def test_missing_error(self) -> None:
+        self.assert_exception_processed(
+            exception_type=DemoExceptionType.missing_error,
+            error_message="test",
+            expected_message="MissingError",
+            expected_status_code=status.HTTP_404_NOT_FOUND,
+        )
+
+    def test_http_exception(self) -> None:
+        self.assert_exception_processed(
+            exception_type=DemoExceptionType.http_exception,
+            error_message="test",
+            expected_message="test",
+            expected_status_code=status.HTTP_409_CONFLICT,
+        )
