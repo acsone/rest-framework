@@ -8,7 +8,7 @@ integration with odoo.
 from typing import Annotated
 
 from psycopg2 import errorcodes
-from psycopg2.errors import OperationalError
+from psycopg2.errors import SerializationFailure
 
 from odoo.api import Environment
 from odoo.exceptions import AccessError, MissingError, UserError, ValidationError
@@ -138,7 +138,7 @@ async def retrying_post(
     return JSONResponse(content={"retries": tryno, "file": file.decode("utf-8")})
 
 
-class FakeConcurrentUpdateError(OperationalError):
+class FakeConcurrentUpdateError(SerializationFailure):
     @property
     def pgcode(self):
         return errorcodes.SERIALIZATION_FAILURE

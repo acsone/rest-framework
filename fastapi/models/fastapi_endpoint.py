@@ -189,6 +189,7 @@ class FastapiEndpoint(models.Model):
                 f"{self.root_path}/<path:application_path>",
             ],
             "save_session": self.save_http_session,
+            "readonly": False,
             # csrf ?????
         }
 

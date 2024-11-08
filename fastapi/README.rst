@@ -17,13 +17,13 @@ Odoo FastAPI
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Frest--framework-lightgray.png?logo=github
-    :target: https://github.com/OCA/rest-framework/tree/17.0/fastapi
+    :target: https://github.com/OCA/rest-framework/tree/18.0/fastapi
     :alt: OCA/rest-framework
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/rest-framework-17-0/rest-framework-17-0-fastapi
+    :target: https://translation.odoo-community.org/projects/rest-framework-18-0/rest-framework-18-0-fastapi
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/rest-framework&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/rest-framework&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -87,44 +87,44 @@ let's you keep advantage of the fastapi framework and use it with Odoo.
 
 Before you start, we must define some terms:
 
--  **App**: A FastAPI app is a collection of routes, dependencies, and
-   other components that can be used to build a web application.
--  **Router**: A router is a collection of routes that can be mounted in
-   an app.
--  **Route**: A route is a mapping between an HTTP method and a path,
-   and defines what should happen when the user requests that path.
--  **Dependency**: A dependency is a callable that can be used to get
-   some information from the user request, or to perform some actions
-   before the request handler is called.
--  **Request**: A request is an object that contains all the information
-   sent by the user's browser as part of an HTTP request.
--  **Response**: A response is an object that contains all the
-   information that the user's browser needs to build the result page.
--  **Handler**: A handler is a function that takes a request and returns
-   a response.
--  **Middleware**: A middleware is a function that takes a request and a
-   handler, and returns a response.
+- **App**: A FastAPI app is a collection of routes, dependencies, and
+  other components that can be used to build a web application.
+- **Router**: A router is a collection of routes that can be mounted in
+  an app.
+- **Route**: A route is a mapping between an HTTP method and a path, and
+  defines what should happen when the user requests that path.
+- **Dependency**: A dependency is a callable that can be used to get
+  some information from the user request, or to perform some actions
+  before the request handler is called.
+- **Request**: A request is an object that contains all the information
+  sent by the user's browser as part of an HTTP request.
+- **Response**: A response is an object that contains all the
+  information that the user's browser needs to build the result page.
+- **Handler**: A handler is a function that takes a request and returns
+  a response.
+- **Middleware**: A middleware is a function that takes a request and a
+  handler, and returns a response.
 
 The FastAPI framework is based on the following principles:
 
--  **Fast**: Very high performance, on par with NodeJS and Go (thanks to
-   Starlette and Pydantic). [One of the fastest Python frameworks
-   available]
--  **Fast to code**: Increase the speed to develop features by about
-   200% to 300%.
--  **Fewer bugs**: Reduce about 40% of human (developer) induced errors.
--  **Intuitive**: Great editor support. Completion everywhere. Less time
-   debugging.
--  **Easy**: Designed to be easy to use and learn. Less time reading
-   docs.
--  **Short**: Minimize code duplication. Multiple features from each
-   parameter declaration. Fewer bugs.
--  **Robust**: Get production-ready code. With automatic interactive
-   documentation.
--  **Standards-based**: Based on (and fully compatible with) the open
-   standards for APIs: OpenAPI (previously known as Swagger) and JSON
-   Schema.
--  **Open Source**: FastAPI is fully open-source, under the MIT license.
+- **Fast**: Very high performance, on par with NodeJS and Go (thanks to
+  Starlette and Pydantic). [One of the fastest Python frameworks
+  available]
+- **Fast to code**: Increase the speed to develop features by about 200%
+  to 300%.
+- **Fewer bugs**: Reduce about 40% of human (developer) induced errors.
+- **Intuitive**: Great editor support. Completion everywhere. Less time
+  debugging.
+- **Easy**: Designed to be easy to use and learn. Less time reading
+  docs.
+- **Short**: Minimize code duplication. Multiple features from each
+  parameter declaration. Fewer bugs.
+- **Robust**: Get production-ready code. With automatic interactive
+  documentation.
+- **Standards-based**: Based on (and fully compatible with) the open
+  standards for APIs: OpenAPI (previously known as Swagger) and JSON
+  Schema.
+- **Open Source**: FastAPI is fully open-source, under the MIT license.
 
 The first step is to install the fastapi addon. You can do it with the
 following command:
@@ -286,9 +286,9 @@ define the access rights of the user that will run your app. This group
 should imply the predefined group **'FastAPI Endpoint Runner'**. This
 group defines the minimum access rights that the user needs to:
 
--  access the endpoint instance it belongs to
--  access to its own user record
--  access to the partner record that is linked to its user record
+- access the endpoint instance it belongs to
+- access to its own user record
+- access to the partner record that is linked to its user record
 
 .. code:: xml
 
@@ -346,12 +346,12 @@ function, the only way to get access to the odoo environment is to
 inject it as a dependency. The fastapi addon provides a set of function
 that can be used as dependencies:
 
--  **'odoo_env'**: Returns the current odoo environment.
--  **'fastapi_endpoint'**: Returns the current fastapi endpoint model
-   instance.
--  **'authenticated_partner'**: Returns the authenticated partner.
--  **'authenticated_partner_env'**: Returns the current odoo environment
-   with the authenticated_partner_id into the context.
+- **'odoo_env'**: Returns the current odoo environment.
+- **'fastapi_endpoint'**: Returns the current fastapi endpoint model
+  instance.
+- **'authenticated_partner'**: Returns the authenticated partner.
+- **'authenticated_partner_env'**: Returns the current odoo environment
+  with the authenticated_partner_id into the context.
 
 By default, the **'odoo_env'** and **'fastapi_endpoint'** dependencies
 are available without extra work.
@@ -727,11 +727,11 @@ change the contract, you must create a new route.
 
 What can you change?
 
--  You can change the implementation of the route handler.
--  You can override the dependencies of the route handler.
--  You can add a new route handler.
--  You can extend the model used as parameter or as response of the
-   route handler.
+- You can change the implementation of the route handler.
+- You can override the dependencies of the route handler.
+- You can add a new route handler.
+- You can extend the model used as parameter or as response of the route
+  handler.
 
 Let's see how to do that.
 
@@ -990,23 +990,23 @@ As briefly introduced in a previous section, a good practice when you
 develop a fastapi app and you want to protect your data in an efficient
 and traceable way is to:
 
--  create a new user specific to the app but with any access rights.
--  create a security group specific to the app and add the user to this
-   group. (This group must implies the group 'AFastAPI Endpoint Runner'
-   that give the minimal access rights)
--  for each model you want to protect:
+- create a new user specific to the app but with any access rights.
+- create a security group specific to the app and add the user to this
+  group. (This group must implies the group 'AFastAPI Endpoint Runner'
+  that give the minimal access rights)
+- for each model you want to protect:
 
-   -  add a 'ir.model.access' record for the model to allow read access
-      to your model and add the group to the record.
-   -  create a new 'ir.rule' record for the model that restricts the
-      access to the records of the model to the authenticated partner by
-      using the key 'authenticated_partner_id' in domain of the rule.
-      (or to the user defined on the 'fastapi.endpoint' model instance
-      if the method is public)
+  - add a 'ir.model.access' record for the model to allow read access to
+    your model and add the group to the record.
+  - create a new 'ir.rule' record for the model that restricts the
+    access to the records of the model to the authenticated partner by
+    using the key 'authenticated_partner_id' in domain of the rule. (or
+    to the user defined on the 'fastapi.endpoint' model instance if the
+    method is public)
 
--  add a dependency on the 'authenticated_partner' to your handlers when
-   you need to access the authenticated partner or ensure that the
-   service is called by an authenticated partner.
+- add a dependency on the 'authenticated_partner' to your handlers when
+  you need to access the authenticated partner or ensure that the
+  service is called by an authenticated partner.
 
 .. code:: xml
 
@@ -1130,111 +1130,111 @@ Developing a fastapi app requires to follow some good practices to
 ensure that the app is robust and easy to maintain. Here are some of
 them:
 
--  A route handler must be as simple as possible. It must not contain
-   any business logic. The business logic must be implemented into the
-   service layer. The route handler must only call the service layer and
-   return the result of the service layer. To ease extension on your
-   business logic, your service layer can be implemented as an odoo
-   abstract model that can be inherited by other addons.
--  A route handler should not expose the internal data structure and api
-   of Odoo. It should provide the api that is needed by the client. More
-   widely, an app provides a set of services that address a set of use
-   cases specific to a well defined functional domain. You must always
-   keep in mind that your api will remain the same for a long time even
-   if you upgrade your odoo version of modify your business logic.
--  A route handler is a transactional unit of work. When you design your
-   api you must ensure that the completeness of a use case is guaranteed
-   by a single transaction. If you need to perform several transactions
-   to complete a use case, you introduce a risk of inconsistency in your
-   data or extra complexity in your client code.
--  Properly handle the errors. The route handler must return a proper
-   error response when an error occurs. The error response must be
-   consistent with the rest of the api. The error response must be
-   documented in the api documentation. By default, the
-   **'odoo-addon-fastapi'** module handles the common exception types
-   defined in the **'odoo.exceptions'** module and returns a proper
-   error response with the corresponding http status code. An error in
-   the route handler must always return an error response with a http
-   status code different from 200. The error response must contain a
-   human readable message that can be displayed to the user. The error
-   response can also contain a machine readable code that can be used by
-   the client to handle the error in a specific way.
--  When you design your json document through the pydantic models, you
-   must use the appropriate data types. For example, you must use the
-   data type **'datetime.date'** to represent a date and not a string.
-   You must also properly define the constraints on the fields. For
-   example, if a field is optional, you must use the data type
-   **'typing.Optional'**. `pydantic <https://docs.pydantic.dev/>`__
-   provides everything you need to properly define your json document.
--  Always use an appropriate pydantic model as request and/or response
-   for your route handler. Constraints on the fields of the pydantic
-   model must apply to the specific use case. For example, if your route
-   handler is used to create a sale order, the pydantic model must not
-   contain the field 'id' because the id of the sale order will be
-   generated by the route handler. But if the id is required afterwords,
-   the pydantic model for the response must contain the field 'id' as
-   required.
--  Uses descriptive property names in your json documents. For example,
-   avoid the use of documents providing a flat list of key value pairs.
--  Be consistent in the naming of your fields into your json documents.
-   For example, if you use 'id' to represent the id of a sale order, you
-   must use 'id' to represent the id of all the other objects.
--  Be consistent in the naming style of your fields. Always prefer
-   underscore to camel case.
--  Always use plural for the name of the fields that contain a list of
-   items. For example, if you have a field 'lines' that contains a list
-   of sale order lines, you must use 'lines' and not 'line'.
--  You can't expect that a client will provide you the identifier of a
-   specific record in odoo (for example the id of a carrier) if you
-   don't provide a specific route handler to retrieve the list of
-   available records. Sometimes, the client must share with odoo the
-   identity of a specific record to be able to perform an appropriate
-   action specific to this record (for example, the processing of a
-   payment is different for each payment acquirer). In this case, you
-   must provide a specific attribute that allows both the client and
-   odoo to identify the record. The field 'provider' on a payment
-   acquirer allows you to identify a specific record in odoo. This kind
-   of approach allows both the client and odoo to identify the record
-   without having to rely on the id of the record. (This will ensure
-   that the client will not break if the id of the record is changed in
-   odoo for example when tests are run on an other database).
--  Always use the same name for the same kind of object. For example, if
-   you have a field 'lines' that contains a list of sale order lines,
-   you must use the same name for the same kind of object in all the
-   other json documents.
--  Manage relations between objects in your json documents the same way.
-   By default, you should return the id of the related object in the
-   json document. But this is not always possible or convenient, so you
-   can also return the related object in the json document. The main
-   advantage of returning the id of the related object is that it allows
-   you to avoid the `n+1
-   problem <https://restfulapi.net/rest-api-n-1-problem/>`__ . The main
-   advantage of returning the related object in the json document is
-   that it allows you to avoid an extra call to retrieve the related
-   object. By keeping in mind the pros and cons of each approach, you
-   can choose the best one for your use case. Once it's done, you must
-   be consistent in the way you manage the relations of the same object.
--  It's not always a good idea to name your fields into your json
-   documents with the same name as the fields of the corresponding odoo
-   model. For example, in your document representing a sale order, you
-   must not use the name 'order_line' for the field that contains the
-   list of sale order lines. The name 'order_line' in addition to being
-   confusing and not consistent with the best practices, is not
-   auto-descriptive. The name 'lines' is much better.
--  Keep a defensive programming approach. If you provide a route handler
-   that returns a list of records, you must ensure that the computation
-   of the list is not too long or will not drain your server resources.
-   For example, for search route handlers, you must ensure that the
-   search is limited to a reasonable number of records by default.
--  As a corollary of the previous point, a search handler must always
-   use the pagination mechanism with a reasonable default page size. The
-   result list must be enclosed in a json document that contains the
-   count of records into the system matching your search criteria and
-   the list of records for the given page and size.
--  Use plural for the name of a service. For example, if you provide a
-   service that allows you to manage the sale orders, you must use the
-   name 'sale_orders' and not 'sale_order'.
--  ... and many more.
+- A route handler must be as simple as possible. It must not contain any
+  business logic. The business logic must be implemented into the
+  service layer. The route handler must only call the service layer and
+  return the result of the service layer. To ease extension on your
+  business logic, your service layer can be implemented as an odoo
+  abstract model that can be inherited by other addons.
+- A route handler should not expose the internal data structure and api
+  of Odoo. It should provide the api that is needed by the client. More
+  widely, an app provides a set of services that address a set of use
+  cases specific to a well defined functional domain. You must always
+  keep in mind that your api will remain the same for a long time even
+  if you upgrade your odoo version of modify your business logic.
+- A route handler is a transactional unit of work. When you design your
+  api you must ensure that the completeness of a use case is guaranteed
+  by a single transaction. If you need to perform several transactions
+  to complete a use case, you introduce a risk of inconsistency in your
+  data or extra complexity in your client code.
+- Properly handle the errors. The route handler must return a proper
+  error response when an error occurs. The error response must be
+  consistent with the rest of the api. The error response must be
+  documented in the api documentation. By default, the
+  **'odoo-addon-fastapi'** module handles the common exception types
+  defined in the **'odoo.exceptions'** module and returns a proper error
+  response with the corresponding http status code. An error in the
+  route handler must always return an error response with a http status
+  code different from 200. The error response must contain a human
+  readable message that can be displayed to the user. The error response
+  can also contain a machine readable code that can be used by the
+  client to handle the error in a specific way.
+- When you design your json document through the pydantic models, you
+  must use the appropriate data types. For example, you must use the
+  data type **'datetime.date'** to represent a date and not a string.
+  You must also properly define the constraints on the fields. For
+  example, if a field is optional, you must use the data type
+  **'typing.Optional'**. `pydantic <https://docs.pydantic.dev/>`__
+  provides everything you need to properly define your json document.
+- Always use an appropriate pydantic model as request and/or response
+  for your route handler. Constraints on the fields of the pydantic
+  model must apply to the specific use case. For example, if your route
+  handler is used to create a sale order, the pydantic model must not
+  contain the field 'id' because the id of the sale order will be
+  generated by the route handler. But if the id is required afterwords,
+  the pydantic model for the response must contain the field 'id' as
+  required.
+- Uses descriptive property names in your json documents. For example,
+  avoid the use of documents providing a flat list of key value pairs.
+- Be consistent in the naming of your fields into your json documents.
+  For example, if you use 'id' to represent the id of a sale order, you
+  must use 'id' to represent the id of all the other objects.
+- Be consistent in the naming style of your fields. Always prefer
+  underscore to camel case.
+- Always use plural for the name of the fields that contain a list of
+  items. For example, if you have a field 'lines' that contains a list
+  of sale order lines, you must use 'lines' and not 'line'.
+- You can't expect that a client will provide you the identifier of a
+  specific record in odoo (for example the id of a carrier) if you don't
+  provide a specific route handler to retrieve the list of available
+  records. Sometimes, the client must share with odoo the identity of a
+  specific record to be able to perform an appropriate action specific
+  to this record (for example, the processing of a payment is different
+  for each payment acquirer). In this case, you must provide a specific
+  attribute that allows both the client and odoo to identify the record.
+  The field 'provider' on a payment acquirer allows you to identify a
+  specific record in odoo. This kind of approach allows both the client
+  and odoo to identify the record without having to rely on the id of
+  the record. (This will ensure that the client will not break if the id
+  of the record is changed in odoo for example when tests are run on an
+  other database).
+- Always use the same name for the same kind of object. For example, if
+  you have a field 'lines' that contains a list of sale order lines, you
+  must use the same name for the same kind of object in all the other
+  json documents.
+- Manage relations between objects in your json documents the same way.
+  By default, you should return the id of the related object in the json
+  document. But this is not always possible or convenient, so you can
+  also return the related object in the json document. The main
+  advantage of returning the id of the related object is that it allows
+  you to avoid the `n+1
+  problem <https://restfulapi.net/rest-api-n-1-problem/>`__ . The main
+  advantage of returning the related object in the json document is that
+  it allows you to avoid an extra call to retrieve the related object.
+  By keeping in mind the pros and cons of each approach, you can choose
+  the best one for your use case. Once it's done, you must be consistent
+  in the way you manage the relations of the same object.
+- It's not always a good idea to name your fields into your json
+  documents with the same name as the fields of the corresponding odoo
+  model. For example, in your document representing a sale order, you
+  must not use the name 'order_line' for the field that contains the
+  list of sale order lines. The name 'order_line' in addition to being
+  confusing and not consistent with the best practices, is not
+  auto-descriptive. The name 'lines' is much better.
+- Keep a defensive programming approach. If you provide a route handler
+  that returns a list of records, you must ensure that the computation
+  of the list is not too long or will not drain your server resources.
+  For example, for search route handlers, you must ensure that the
+  search is limited to a reasonable number of records by default.
+- As a corollary of the previous point, a search handler must always use
+  the pagination mechanism with a reasonable default page size. The
+  result list must be enclosed in a json document that contains the
+  count of records into the system matching your search criteria and the
+  list of records for the given page and size.
+- Use plural for the name of a service. For example, if you provide a
+  service that allows you to manage the sale orders, you must use the
+  name 'sale_orders' and not 'sale_order'.
+- ... and many more.
 
 We could write a book about the best practices to follow when you design
 your api but we will stop here. This list is the result of our
@@ -1369,79 +1369,78 @@ fastapi app.
    │   ├── dependencies.py  # custom dependencies
    │   ├── error_handlers.py  # custom error handlers
 
--  The **'models'** directory contains the odoo models. When you define
-   a new app, as for the others addons, you will add your new model
-   inheriting from the **'fastapi.endpoint'** model in this directory.
+- The **'models'** directory contains the odoo models. When you define a
+  new app, as for the others addons, you will add your new model
+  inheriting from the **'fastapi.endpoint'** model in this directory.
 
--  The **'routers'** directory contains the fastapi routers. You will
-   add your new routers in this directory. Each route starting with the
-   same prefix should be grouped in the same file. For example, all the
-   routes starting with '/items' should be defined in the **'items.py'**
-   file. The **'\__init\_\_.py'** file in this directory is used to
-   import all the routers defined in the directory and create a global
-   router that can be used in an app. For example, in your
-   **'items.py'** file, you will define a router like this:
+- The **'routers'** directory contains the fastapi routers. You will add
+  your new routers in this directory. Each route starting with the same
+  prefix should be grouped in the same file. For example, all the routes
+  starting with '/items' should be defined in the **'items.py'** file.
+  The **'\__init\_\_.py'** file in this directory is used to import all
+  the routers defined in the directory and create a global router that
+  can be used in an app. For example, in your **'items.py'** file, you
+  will define a router like this:
 
-   .. code:: python
+  .. code:: python
 
-      router = APIRouter(tags=["items"])
+     router = APIRouter(tags=["items"])
 
-      router.get("/items", response_model=List[Item])
-      def list_items():
-          pass
+     router.get("/items", response_model=List[Item])
+     def list_items():
+         pass
 
-   In the **'\__init\_\_.py'** file, you will import the router and add
-   it to the global router or your addon.
+  In the **'\__init\_\_.py'** file, you will import the router and add
+  it to the global router or your addon.
 
-   .. code:: python
+  .. code:: python
 
-      from fastapi import APIRouter
+     from fastapi import APIRouter
 
-      from .items import router as items_router
+     from .items import router as items_router
 
-      router = APIRouter()
-      router.include_router(items_router)
+     router = APIRouter()
+     router.include_router(items_router)
 
--  The **'schemas.py'** will be used to define the pydantic models. For
-   complex APIs with a lot of models, it will be better to create a
-   **'schemas'** directory and split the models in different files. The
-   **'\__init\_\_.py'** file in this directory will be used to import
-   all the models defined in the directory. For example, in your
-   **'my_model.py'** file, you will define a model like this:
+- The **'schemas.py'** will be used to define the pydantic models. For
+  complex APIs with a lot of models, it will be better to create a
+  **'schemas'** directory and split the models in different files. The
+  **'\__init\_\_.py'** file in this directory will be used to import all
+  the models defined in the directory. For example, in your
+  **'my_model.py'** file, you will define a model like this:
 
-   .. code:: python
+  .. code:: python
 
-      from pydantic import BaseModel
+     from pydantic import BaseModel
 
-      class MyModel(BaseModel):
-          name: str
-          description: str = None
+     class MyModel(BaseModel):
+         name: str
+         description: str = None
 
-   In the **'\__init\_\_.py'** file, you will import the model's classes
-   from the files in the directory.
+  In the **'\__init\_\_.py'** file, you will import the model's classes
+  from the files in the directory.
 
-   .. code:: python
+  .. code:: python
 
-      from .my_model import MyModel
+     from .my_model import MyModel
 
-   This will allow to always import the models from the schemas module
-   whatever the models are spread across different files or defined in
-   the **'schemas.py'** file.
+  This will allow to always import the models from the schemas module
+  whatever the models are spread across different files or defined in
+  the **'schemas.py'** file.
 
-   .. code:: python
+  .. code:: python
 
-      from x_api_addon.schemas import MyModel
+     from x_api_addon.schemas import MyModel
 
--  The **'dependencies.py'** file contains the custom dependencies that
-   you will use in your routers. For example, you can define a
-   dependency to check the access rights of the user.
+- The **'dependencies.py'** file contains the custom dependencies that
+  you will use in your routers. For example, you can define a dependency
+  to check the access rights of the user.
 
--  The **'error_handlers.py'** file contains the custom error handlers
-   that you will use in your routers. The **'odoo-addon-fastapi'**
-   module provides the default error handlers for the common odoo
-   exceptions. Chance are that you will not need to define your own
-   error handlers. But if you need to do it, you can define them in this
-   file.
+- The **'error_handlers.py'** file contains the custom error handlers
+  that you will use in your routers. The **'odoo-addon-fastapi'** module
+  provides the default error handlers for the common odoo exceptions.
+  Chance are that you will not need to define your own error handlers.
+  But if you need to do it, you can define them in this file.
 
 What's next?
 ------------
@@ -1477,26 +1476,26 @@ Changelog
 Features
 ~~~~~~~~
 
--  
+- 
 
-   -  A new parameter is now available on the endpoint model to let you
-      disable the creation and the store of session files used by Odoo
-      for calls to your application endpoint. This is usefull to prevent
-      disk space consumption and IO operations if your application
-      doesn't need to use this sessions files which are mainly used by
-      Odoo by to store the session info of logged in users.
-      (`#442 <https://github.com/OCA/rest-framework/issues/442>`__)
+  - A new parameter is now available on the endpoint model to let you
+    disable the creation and the store of session files used by Odoo for
+    calls to your application endpoint. This is usefull to prevent disk
+    space consumption and IO operations if your application doesn't need
+    to use this sessions files which are mainly used by Odoo by to store
+    the session info of logged in users.
+    (`#442 <https://github.com/OCA/rest-framework/issues/442>`__)
 
 Bugfixes
 ~~~~~~~~
 
--  Fix issue with the retry of a POST request with a body content.
+- Fix issue with the retry of a POST request with a body content.
 
-   Prior to this fix the retry of a POST request with a body content
-   would stuck in a loop and never complete. This was due to the fact
-   that the request input stream was not reset after a failed attempt to
-   process the request.
-   (`#440 <https://github.com/OCA/rest-framework/issues/440>`__)
+  Prior to this fix the retry of a POST request with a body content
+  would stuck in a loop and never complete. This was due to the fact
+  that the request input stream was not reset after a failed attempt to
+  process the request.
+  (`#440 <https://github.com/OCA/rest-framework/issues/440>`__)
 
 17.0.2.0.0 (2024-10-03)
 -----------------------
@@ -1504,37 +1503,37 @@ Bugfixes
 Bugfixes
 ~~~~~~~~
 
--  This change is a complete rewrite of the way the transactions are
-   managed when integrating a fastapi application into Odoo.
+- This change is a complete rewrite of the way the transactions are
+  managed when integrating a fastapi application into Odoo.
 
-   In the previous implementation, specifics error handlers were put in
-   place to catch exception occurring in the handling of requests made
-   to a fastapi application and to rollback the transaction in case of
-   error. This was done by registering specifics error handlers methods
-   to the fastapi application using the 'add_exception_handler' method
-   of the fastapi application. In this implementation, the transaction
-   was rolled back in the error handler method.
+  In the previous implementation, specifics error handlers were put in
+  place to catch exception occurring in the handling of requests made to
+  a fastapi application and to rollback the transaction in case of
+  error. This was done by registering specifics error handlers methods
+  to the fastapi application using the 'add_exception_handler' method of
+  the fastapi application. In this implementation, the transaction was
+  rolled back in the error handler method.
 
-   This approach was not working as expected for several reasons:
+  This approach was not working as expected for several reasons:
 
-   -  The handling of the error at the fastapi level prevented the retry
-      mechanism to be triggered in case of a DB concurrency error. This
-      is because the error was catch at the fastapi level and never
-      bubbled up to the early stage of the processing of the request
-      where the retry mechanism is implemented.
-   -  The cleanup of the environment and the registry was not properly
-      done in case of error. In the **'odoo.service.model.retrying'**
-      method, you can see that the cleanup process is different in case
-      of error raised by the database and in case of error raised by the
-      application.
+  - The handling of the error at the fastapi level prevented the retry
+    mechanism to be triggered in case of a DB concurrency error. This is
+    because the error was catch at the fastapi level and never bubbled
+    up to the early stage of the processing of the request where the
+    retry mechanism is implemented.
+  - The cleanup of the environment and the registry was not properly
+    done in case of error. In the **'odoo.service.model.retrying'**
+    method, you can see that the cleanup process is different in case of
+    error raised by the database and in case of error raised by the
+    application.
 
-   This change fix these issues by ensuring that errors are no more
-   catch at the fastapi level and bubble up the fastapi processing stack
-   through the event loop required to transform WSGI to ASGI. As result
-   the transactional nature of the requests to the fastapi applications
-   is now properly managed by the Odoo framework.
+  This change fix these issues by ensuring that errors are no more catch
+  at the fastapi level and bubble up the fastapi processing stack
+  through the event loop required to transform WSGI to ASGI. As result
+  the transactional nature of the requests to the fastapi applications
+  is now properly managed by the Odoo framework.
 
-   (`#422 <https://github.com/OCA/rest-framework/issues/422>`__)
+  (`#422 <https://github.com/OCA/rest-framework/issues/422>`__)
 
 17.0.1.0.1 (2024-10-02)
 -----------------------
@@ -1542,15 +1541,15 @@ Bugfixes
 Bugfixes
 ~~~~~~~~
 
--  Fix compatibility issues with the latest Odoo version
+- Fix compatibility issues with the latest Odoo version
 
-   From
-   https://github.com/odoo/odoo/commit/cb1d057dcab28cb0b0487244ba99231ee292502e
-   the original werkzeug HTTPRequest class has been wrapped in a new
-   class to keep under control the attributes developers use. This
-   changes take care of this new implementation but also keep
-   compatibility with the old ones.
-   (`#414 <https://github.com/OCA/rest-framework/issues/414>`__)
+  From
+  https://github.com/odoo/odoo/commit/cb1d057dcab28cb0b0487244ba99231ee292502e
+  the original werkzeug HTTPRequest class has been wrapped in a new
+  class to keep under control the attributes developers use. This
+  changes take care of this new implementation but also keep
+  compatibility with the old ones.
+  (`#414 <https://github.com/OCA/rest-framework/issues/414>`__)
 
 16.0.1.2.5 (2024-01-17)
 -----------------------
@@ -1558,14 +1557,14 @@ Bugfixes
 Bugfixes
 ~~~~~~~~
 
--  Odoo has done an update and now, it checks domains of ir.rule on
-   creation and modification.
+- Odoo has done an update and now, it checks domains of ir.rule on
+  creation and modification.
 
-   The ir.rule 'Fastapi: Running user rule' uses a field
-   (authenticate\ *partner_id) that comes from the context. This field
-   wasn't always set and this caused an error when Odoo checked the
-   domain. So now it is set to False by default.
-   (``#410 <https://github.com/OCA/rest-framework/issues/410>``*)
+  The ir.rule 'Fastapi: Running user rule' uses a field
+  (authenticate\ *partner_id) that comes from the context. This field
+  wasn't always set and this caused an error when Odoo checked the
+  domain. So now it is set to False by default.
+  (``#410 <https://github.com/OCA/rest-framework/issues/410>``*)
 
 16.0.1.2.3 (2023-12-21)
 -----------------------
@@ -1573,12 +1572,12 @@ Bugfixes
 Bugfixes
 ~~~~~~~~
 
--  In case of exception in endpoint execution, close the database cursor
-   after rollback.
+- In case of exception in endpoint execution, close the database cursor
+  after rollback.
 
-   This is to ensure that the *retrying* method in *service/model.py*
-   does not try to flush data to the database.
-   (`#405 <https://github.com/OCA/rest-framework/issues/405>`__)
+  This is to ensure that the *retrying* method in *service/model.py*
+  does not try to flush data to the database.
+  (`#405 <https://github.com/OCA/rest-framework/issues/405>`__)
 
 16.0.1.2.2 (2023-12-12)
 -----------------------
@@ -1586,17 +1585,17 @@ Bugfixes
 Bugfixes
 ~~~~~~~~
 
--  When using the 'FastAPITransactionCase' class, allows to specify a
-   specific override of the 'authenticated_partner_impl' method into the
-   list of overrides to apply. Before this change, the
-   'authenticated_partner_impl' override given in the 'overrides'
-   parameter was always overridden in the '\_create_test_client' method
-   of the 'FastAPITransactionCase' class. It's now only overridden if
-   the 'authenticated_partner_impl' method is not already present in the
-   list of overrides to apply and no specific partner is given. If a
-   specific partner is given at same time of an override for the
-   'authenticated_partner_impl' method, an error is raised.
-   (`#396 <https://github.com/OCA/rest-framework/issues/396>`__)
+- When using the 'FastAPITransactionCase' class, allows to specify a
+  specific override of the 'authenticated_partner_impl' method into the
+  list of overrides to apply. Before this change, the
+  'authenticated_partner_impl' override given in the 'overrides'
+  parameter was always overridden in the '\_create_test_client' method
+  of the 'FastAPITransactionCase' class. It's now only overridden if the
+  'authenticated_partner_impl' method is not already present in the list
+  of overrides to apply and no specific partner is given. If a specific
+  partner is given at same time of an override for the
+  'authenticated_partner_impl' method, an error is raised.
+  (`#396 <https://github.com/OCA/rest-framework/issues/396>`__)
 
 16.0.1.2.1 (2023-11-03)
 -----------------------
@@ -1604,12 +1603,12 @@ Bugfixes
 Bugfixes
 ~~~~~~~~
 
--  Fix a typo in the Field declaration of the 'count' attribute of the
-   'PagedCollection' schema.
+- Fix a typo in the Field declaration of the 'count' attribute of the
+  'PagedCollection' schema.
 
-   Misspelt parameter was triggering a deprecation warning due to recent
-   versions of Pydantic seeing it as an arbitrary parameter.
-   (`#389 <https://github.com/OCA/rest-framework/issues/389>`__)
+  Misspelt parameter was triggering a deprecation warning due to recent
+  versions of Pydantic seeing it as an arbitrary parameter.
+  (`#389 <https://github.com/OCA/rest-framework/issues/389>`__)
 
 16.0.1.2.0 (2023-10-13)
 -----------------------
@@ -1617,15 +1616,15 @@ Bugfixes
 Features
 ~~~~~~~~
 
--  The field *total* in the *PagedCollection* schema is replaced by the
-   field *count*. The field *total* is now deprecated and will be
-   removed in the next major version. This change is backward
-   compatible. The json document returned will now contain both fields
-   *total* and *count* with the same value. In your python code the
-   field *total*, if used, will fill the field *count* with the same
-   value. You are encouraged to use the field *count* instead of *total*
-   and adapt your code accordingly.
-   (`#380 <https://github.com/OCA/rest-framework/issues/380>`__)
+- The field *total* in the *PagedCollection* schema is replaced by the
+  field *count*. The field *total* is now deprecated and will be removed
+  in the next major version. This change is backward compatible. The
+  json document returned will now contain both fields *total* and
+  *count* with the same value. In your python code the field *total*, if
+  used, will fill the field *count* with the same value. You are
+  encouraged to use the field *count* instead of *total* and adapt your
+  code accordingly.
+  (`#380 <https://github.com/OCA/rest-framework/issues/380>`__)
 
 Bug Tracker
 ===========
@@ -1633,7 +1632,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/rest-framework/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/rest-framework/issues/new?body=module:%20fastapi%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/rest-framework/issues/new?body=module:%20fastapi%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -1648,7 +1647,7 @@ Authors
 Contributors
 ------------
 
--  Laurent Mignon <laurent.mignon@acsone.eu>
+- Laurent Mignon <laurent.mignon@acsone.eu>
 
 Maintainers
 -----------
@@ -1671,6 +1670,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-lmignon| 
 
-This module is part of the `OCA/rest-framework <https://github.com/OCA/rest-framework/tree/17.0/fastapi>`_ project on GitHub.
+This module is part of the `OCA/rest-framework <https://github.com/OCA/rest-framework/tree/18.0/fastapi>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
