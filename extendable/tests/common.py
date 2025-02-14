@@ -4,7 +4,8 @@
 from contextlib import contextmanager
 
 import odoo
-from odoo import api
+from odoo import SUPERUSER_ID, api
+from odoo.modules.registry import Registry
 from odoo.tests import common
 
 from extendable import context
@@ -25,8 +26,8 @@ def _get_addon_name(full_name: str) -> str:
 
 @contextmanager
 def new_rollbacked_env():
-    registry = odoo.registry(common.get_db_name())
-    uid = odoo.SUPERUSER_ID
+    registry = Registry(common.get_db_name())
+    uid = SUPERUSER_ID
     cr = registry.cursor()
     try:
         yield api.Environment(cr, uid, {})

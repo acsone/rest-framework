@@ -17,20 +17,19 @@ Extendable
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Frest--framework-lightgray.png?logo=github
-    :target: https://github.com/OCA/rest-framework/tree/16.0/extendable
+    :target: https://github.com/OCA/rest-framework/tree/18.0/extendable
     :alt: OCA/rest-framework
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/rest-framework-16-0/rest-framework-16-0-extendable
+    :target: https://translation.odoo-community.org/projects/rest-framework-18-0/rest-framework-18-0-extendable
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/rest-framework&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/rest-framework&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This addon allows you to use the  `Extendable library`_ within Odoo.
-
-.. _Extendable library: : <https://pypi.org/project/extendable/>
+This addon allows you to use the `Extendable
+library <:%20%3Chttps://pypi.org/project/extendable/%3E>`__ within Odoo.
 
 **Table of contents**
 
@@ -40,15 +39,18 @@ This addon allows you to use the  `Extendable library`_ within Odoo.
 Usage
 =====
 
-By default, all extendable classes defined into your odoo addons are automatically
-loaded by the current addon according to the dependency graph computed by Odoo.
+By default, all extendable classes defined into your odoo addons are
+automatically loaded by the current addon according to the dependency
+graph computed by Odoo.
 
 Known issues / Roadmap
 ======================
 
-The `roadmap <https://github.com/OCA/odoo-addon-extendable/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement+label%3Aextendable>`_
-and `known issues <https://github.com/OCA/odoo-addon-extendable/issues?q=is%3Aopen+is%3Aissue+label%3Abug+label%3Aextendable>`_ can
-be found on GitHub.
+The
+`roadmap <https://github.com/OCA/odoo-addon-extendable/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement+label%3Aextendable>`__
+and `known
+issues <https://github.com/OCA/odoo-addon-extendable/issues?q=is%3Aopen+is%3Aissue+label%3Abug+label%3Aextendable>`__
+can be found on GitHub.
 
 Bug Tracker
 ===========
@@ -56,7 +58,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/rest-framework/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/rest-framework/issues/new?body=module:%20extendable%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/rest-framework/issues/new?body=module:%20extendable%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -64,17 +66,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ACSONE SA/NV
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Laurent Mignon <laurent.mignon@acsone.eu>
+- Laurent Mignon <laurent.mignon@acsone.eu>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -94,6 +96,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-lmignon| 
 
-This module is part of the `OCA/rest-framework <https://github.com/OCA/rest-framework/tree/16.0/extendable>`_ project on GitHub.
+This module is part of the `OCA/rest-framework <https://github.com/OCA/rest-framework/tree/18.0/extendable>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
