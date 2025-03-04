@@ -55,7 +55,7 @@ class TestControllerBuilder(TransactionRestServiceRegistryCase):
                 return {"response": "POST called with message " + params["message"]}
 
             def delete(self, _id):
-                return {"response": "DELETE called with id %s " % _id}
+                return {"response": f"DELETE called with id {_id} "}
 
             def my_method(self, **params):
                 pass
@@ -513,7 +513,7 @@ class TestControllerBuilder2(TransactionRestServiceRegistryCase):
                     attr
                 ],
                 default,
-                "wrong %s" % attr,
+                f"wrong {attr}",
             )
         self.assertEqual(
             getattr(routes["get_new_api_method_with"], ROUTING_DECORATOR_ATTR)["auth"],
@@ -551,7 +551,7 @@ class TestControllerBuilder2(TransactionRestServiceRegistryCase):
                     attr
                 ],
                 default,
-                "wrong %s" % attr,
+                f"wrong {attr}",
             )
 
         routing = getattr(routes["my_controller_route_with"], ROUTING_DECORATOR_ATTR)
@@ -561,11 +561,10 @@ class TestControllerBuilder2(TransactionRestServiceRegistryCase):
             ("csrf", "False"),
             ("save_session", "False"),
         ]:
-
             self.assertEqual(
                 routing[attr],
                 value,
-                "wrong %s" % attr,
+                f"wrong {attr}",
             )
         self.assertEqual(
             getattr(
@@ -579,7 +578,8 @@ class TestControllerBuilder2(TransactionRestServiceRegistryCase):
         """Test auth="public_or_default" on restapi.method
 
         The auth method on the route should be public_or_my_default_auth
-        since the ir.http model provides the _auth_method_public_or_my_default_auth methods
+        since the ir.http model provides the _auth_method_public_or_my_default_auth
+        methods
         """
         default_auth = "my_default_auth"
         self._BaseTestController._default_auth = default_auth
@@ -624,9 +624,9 @@ class TestControllerBuilder2(TransactionRestServiceRegistryCase):
     def test_06(self):
         """Test auth="public_or_default" on restapi.method
 
-        The auth method on the route should be the default_auth configurerd on the controller
-        since the ir.http model doesn't provides the _auth_method_public_or_my_default_auth
-        methods
+        The auth method on the route should be the default_auth configured on the
+        controller since the ir.http model doesn't provide the
+        _auth_method_public_or_my_default_auth methods
         """
         default_auth = "my_default_auth"
         self._BaseTestController._default_auth = default_auth

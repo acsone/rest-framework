@@ -299,7 +299,7 @@ class CerberusListValidator(CerberusValidator):
                              contain unique items.
                              (Not enforced at validation time)
         """
-        super(CerberusListValidator, self).__init__(schema=schema)
+        super().__init__(schema=schema)
         self._min_items = min_items
         self._max_items = max_items
         self._unique_items = unique_items
@@ -331,7 +331,8 @@ class CerberusListValidator(CerberusValidator):
         if self._min_items is not None and len(values) < self._min_items:
             raise ExceptionClass(
                 _(
-                    "BadRequest: Not enough items in the list (%(current)s < %(expected)s)",
+                    "BadRequest: Not enough items in the list (%(current)s "
+                    "< %(expected)s)",
                     current=len(values),
                     expected=self._min_items,
                 )
@@ -339,7 +340,8 @@ class CerberusListValidator(CerberusValidator):
         if self._max_items is not None and len(values) > self._max_items:
             raise ExceptionClass(
                 _(
-                    "BadRequest: Too many items in the list (%(current)s > %(expected)s)",
+                    "BadRequest: Too many items in the list (%(current)s "
+                    "> %(expected)s)",
                     current=len(values),
                     expected=self._max_items,
                 )
@@ -408,8 +410,8 @@ class MultipartFormData(RestMethodParam):
                     )  # multipart ony sends its parts as string
                 except json.JSONDecodeError as error:
                     raise ValidationError(
-                        _("{}'s JSON content is malformed: {}".format(key, error))
-                    )
+                        _(f"{key}'s JSON content is malformed: {error}")
+                    ) from error
                 param = part.from_params(service, json_param)
             params[key] = param
         return params
