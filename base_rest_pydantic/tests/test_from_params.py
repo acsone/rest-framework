@@ -1,19 +1,18 @@
 # Copyright 2021 Wakari SRL
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
-from typing import Type
 from unittest import mock
+
+from pydantic import BaseModel
 
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
-
-from pydantic import BaseModel
 
 from .. import restapi
 
 
 class TestPydantic(TransactionCase):
     def setUp(self):
-        super(TestPydantic, self).setUp()
+        super().setUp()
 
         class Model1(BaseModel):
             name: str
@@ -21,7 +20,7 @@ class TestPydantic(TransactionCase):
 
         self.Model1: BaseModel = Model1
 
-    def _from_params(self, pydantic_cls: Type[BaseModel], params: dict, **kwargs):
+    def _from_params(self, pydantic_cls: type[BaseModel], params: dict, **kwargs):
         restapi_pydantic_cls = (
             restapi.PydanticModelList
             if isinstance(params, list)

@@ -2,12 +2,12 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 import json
 
+from pydantic import BaseModel, ValidationError
+
 from odoo import _
 from odoo.exceptions import UserError
 
 from odoo.addons.base_rest import restapi
-
-from pydantic import BaseModel, ValidationError
 
 
 def replace_ref_in_schema(item, original_schema):
@@ -175,7 +175,10 @@ class PydanticModelList(PydanticModel):
         if self._min_items is not None and len(values) < self._min_items:
             raise ExceptionClass(
                 _(
-                    "BadRequest: Not enough items in the list (%(current)s < %(expected)s)",
+                    (
+                        "BadRequest: Not enough items in the list (%(current)s < "
+                        "%(expected)s)"
+                    ),
                     current=len(values),
                     expected=self._min_items,
                 )
@@ -183,7 +186,10 @@ class PydanticModelList(PydanticModel):
         if self._max_items is not None and len(values) > self._max_items:
             raise ExceptionClass(
                 _(
-                    "BadRequest: Too many items in the list (%(current)s > %(expected)s)",
+                    (
+                        "BadRequest: Too many items in the list (%(current)s > "
+                        "%(expected)s)"
+                    ),
                     current=len(values),
                     expected=self._max_items,
                 )

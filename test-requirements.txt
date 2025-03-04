@@ -1,1 +1,2 @@
 httpx
+odoo-addon-base-rest @ git+https://github.com/OCA/rest-framework.git@refs/pull/506/head#subdirectory=base_rest
