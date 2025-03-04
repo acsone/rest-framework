@@ -52,7 +52,7 @@ class TestOpenAPIGenerator(TransactionRestServiceRegistryCase):
         # The title is generated from the service usage
         # The service info must contains a title and a description
         info = openapi["info"]
-        self.assertEqual(info["title"], "%s REST services" % PartnerService._usage)
+        self.assertEqual(info["title"], f"{PartnerService._usage} REST services")
         self.assertEqual(info["description"], PartnerService._description)
 
         paths = openapi["paths"]

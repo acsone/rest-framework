@@ -20,8 +20,8 @@ class BaseRestServiceAPISpec(APISpec):
 
     def __init__(self, service_component, **params):
         self._service = service_component
-        super(BaseRestServiceAPISpec, self).__init__(
-            title="%s REST services" % self._service._usage,
+        super().__init__(
+            title=f"{self._service._usage} REST services",
             version="",
             openapi_version="3.0.0",
             info={
@@ -45,11 +45,9 @@ class BaseRestServiceAPISpec(APISpec):
         base_url = env["ir.config_parameter"].sudo().get_param("web.base.url")
         return [
             {
-                "url": "%s/%s/%s"
-                % (
-                    base_url.strip("/"),
-                    collection_path.strip("/"),
-                    self._service._usage,
+                "url": (
+                    f"{base_url.strip('/')}/{collection_path.strip('/')}"
+                    f"/{self._service._usage}"
                 )
             }
         ]

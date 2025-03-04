@@ -10,6 +10,7 @@ Register available REST services at the build of a registry.
 This code is inspired by ``odoo.addons.component.builder.ComponentBuilder``
 
 """
+
 import inspect
 import logging
 
@@ -94,7 +95,7 @@ class RestServiceRegistration(models.AbstractModel):
         )
         base_controller_cls._identifier = identifier
         # put our new controller into the new addon module
-        ctrl_cls.__module__ = "odoo.addons.{}".format(addon_name)
+        ctrl_cls.__module__ = f"odoo.addons.{addon_name}"
 
         self.env.registry._init_modules.add(addon_name)
 
@@ -137,7 +138,7 @@ class RestServiceRegistration(models.AbstractModel):
                 if auth == "public_or_default":
                     alternative_auth = "public_or_" + default_auth
                     if getattr(
-                        self.env["ir.http"], "_auth_method_%s" % alternative_auth, None
+                        self.env["ir.http"], f"_auth_method_{alternative_auth}", None
                     ):
                         routing["auth"] = alternative_auth
                     else:
@@ -224,7 +225,8 @@ class RestServiceRegistration(models.AbstractModel):
                     and current_controller != controller_def["controller_class"]
                 ):
                     _logger.error(
-                        "Only one REST controller can be safely declared for root path %s\n "
+                        "Only one REST controller can be safely declared for root "
+                        "path %s\n "
                         "Registering controller %s\n "
                         "Registered controller%s\n",
                         root_path,
@@ -245,7 +247,7 @@ class RestServiceRegistration(models.AbstractModel):
         _rest_services_routes[self.env.cr.dbname].add(route_path)
 
 
-class RestApiMethodTransformer(object):
+class RestApiMethodTransformer:
     """Helper class to generate and apply the missing restapi.method decorator
     to service's methods defined without decorator.
 
@@ -297,7 +299,7 @@ class RestApiMethodTransformer(object):
         method_name = method.__name__
         signature = inspect.signature(method)
         id_in_path_required = "_id" in signature.parameters
-        path = "/{}".format(method_name)
+        path = f"/{method_name}"
         if id_in_path_required:
             path = "/<int:id>" + path
         if method_name in ("get", "search"):
@@ -341,15 +343,15 @@ class RestApiMethodTransformer(object):
         return None
 
     def _method_to_input_param(self, method):
-        validator_method_name = "_validator_{}".format(method.__name__)
+        validator_method_name = f"_validator_{method.__name__}"
         return self._method_to_param(validator_method_name, "input")
 
     def _method_to_output_param(self, method):
-        validator_method_name = "_validator_return_{}".format(method.__name__)
+        validator_method_name = f"_validator_return_{method.__name__}"
         return self._method_to_param(validator_method_name, "output")
 
 
-class RestApiServiceControllerGenerator(object):
+class RestApiServiceControllerGenerator:
     """
     An object helper used to generate the http.Controller required to serve
     the method decorated with the `@restappi.method` decorator
@@ -391,13 +393,13 @@ class RestApiServiceControllerGenerator(object):
         path_sep = ""
         if root_path[-1] != "/":
             path_sep = "/"
-        root_path = "{}{}{}".format(root_path, path_sep, self._service._usage)
+        root_path = f"{root_path}{path_sep}{self._service._usage}"
         for name, method in _inspect_methods(self._service.__class__):
             routing = getattr(method, ROUTING_DECORATOR_ATTR, None)
             if routing is None:
                 continue
             for routes, http_method in routing["routes"]:
-                method_name = "{}_{}".format(http_method.lower(), name)
+                method_name = f"{http_method.lower()}_{name}"
                 default_route = routes[0]
                 rule = Rule(default_route)
                 Map(rules=[rule])
@@ -417,7 +419,7 @@ class RestApiServiceControllerGenerator(object):
                 exec(method, _globals)
                 method_exec = _globals[method_name]
                 route_params = dict(
-                    route=["{}{}".format(root_path, r) for r in routes],
+                    route=[f"{root_path}{r}" for r in routes],
                     methods=[http_method],
                     type="restapi",
                 )
