@@ -71,19 +71,28 @@ class PydanticModel(restapi.RestMethodParam):
                 "required": prop in json_schema.get("required", []),
                 "allowEmptyValue": spec.get("nullable", False),
                 "default": spec.get("default"),
+                "schema": {},
             }
-            if spec.get("schema"):
-                params["schema"] = spec.get("schema")
-            else:
-                params["schema"] = {"type": spec["type"]}
-            if spec.get("items"):
-                params["schema"]["items"] = spec.get("items")
+            if "anyOf" in spec:
+                params["schema"]["anyOf"] = spec["anyOf"]
+            elif "oneOf" in spec:
+                params["schema"]["oneOf"] = spec["oneOf"]
+            elif "type" in spec:
+                params["schema"]["type"] = spec["type"]
+            if spec.get("nullable", False):
+                if "type" in params["schema"]:
+                    params["schema"]["type"] = ["null", params["schema"]["type"]]
+                elif "anyOf" in params["schema"]:
+                    params["schema"]["anyOf"].append({"type": "null"})
+                elif "oneOf" in params["schema"]:
+                    params["schema"]["oneOf"].append({"type": "null"})
+
             if "enum" in spec:
                 params["schema"]["enum"] = spec["enum"]
 
             parameters.append(params)
 
-            if spec["type"] == "array":
+            if spec.get("type") == "array":
                 # To correctly handle array into the url query string,
                 # the name must ends with []
                 params["name"] = params["name"] + "[]"
