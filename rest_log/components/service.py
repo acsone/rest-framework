@@ -9,8 +9,9 @@ import traceback
 
 from werkzeug.urls import url_encode, url_join
 
-from odoo import exceptions, registry
+from odoo import exceptions
 from odoo.http import Response, request
+from odoo.modules.registry import Registry
 
 from odoo.addons.base_rest.http import JSONEncoder
 from odoo.addons.component.core import AbstractComponent
@@ -98,7 +99,7 @@ class BaseRESTService(AbstractComponent):
         try:
             exc_msg = self._get_exception_message(orig_exception)
             tb = traceback.format_exc()
-            with registry(self.env.cr.dbname).cursor() as cr:
+            with Registry(self.env.cr.dbname).cursor() as cr:
                 log_entry = self._log_call_in_db(
                     self.env(cr=cr),
                     request,
@@ -124,7 +125,7 @@ class BaseRESTService(AbstractComponent):
             "model": entry._name,
             "id": entry.id,
         }
-        url = "/web?#%s" % url_encode(url_params)
+        url = f"/web?#{url_encode(url_params)}"
         return url_join(base_url, url)
 
     @property

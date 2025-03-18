@@ -4,7 +4,7 @@
         <field name="name">rest.log tree</field>
         <field name="model">rest.log</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="state == 'failed'">
+            <list decoration-danger="state == 'failed'">
                 <field name="collection" optional="hide" />
                 <field name="collection_id" optional="hide" />
                 <field name="create_uid" />
@@ -15,7 +15,7 @@
                 <field name="exception_name" />
                 <field name="exception_message" />
                 <field name="severity" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="rest_log_form_view" model="ir.ui.view">
@@ -23,7 +23,6 @@
         <field name="model">rest.log</field>
         <field name="arch" type="xml">
             <form>
-                <field name="collection_id" invisible="1" />
                 <header>
                     <field name="state" widget="statusbar" />
                 </header>
@@ -31,13 +30,13 @@
                     <div
                         class="oe_button_box"
                         name="button_box"
-                        attrs="{'invisible': ['|', ('id','=',False), ('collection_id', '=', False)]}"
+                        invisible="['|', ('id','=',False), ('collection_id', '=', False)]"
                     >
                         <button
                             type="object"
                             name="action_view_collection"
                             icon="fa-eye"
-                            attrs="{'invisible': [('collection_id', '=', False)]}"
+                            invisible="[('collection_id', '=', False)]"
                         >
                             View collection
                         </button>
@@ -60,7 +59,7 @@
                     <group
                         string="Result"
                         name="result"
-                        attrs="{'invisible': [('state', '!=', 'success')]}"
+                        invisible="[('state', '!=', 'success')]"
                     >
                         <group>
                             <field name="result" nolabel="1" widget="ace" colspan="2" />
@@ -69,7 +68,7 @@
                     <group
                         string="Error"
                         name="error"
-                        attrs="{'invisible': [('state', '!=', 'failed')]}"
+                        invisible="[('state', '!=', 'failed')]"
                     >
                         <group colspan="2">
                             <field name="exception_name" />
