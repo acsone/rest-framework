@@ -7,9 +7,9 @@ integration with odoo.
 import sys
 
 if sys.version_info >= (3, 9):
-    from typing import Annotated
+    pass
 else:
-    from typing_extensions import Annotated
+    pass
 
 from odoo.api import Environment
 from odoo.exceptions import AccessError, MissingError, UserError, ValidationError
@@ -60,7 +60,7 @@ async def exception(exception_type: DemoExceptionType, error_message: str):
 
 
 @router.get("/demo/lang")
-async def get_lang(env: Annotated[Environment, Depends(odoo_env)]):
+async def get_lang(env: Environment = Depends(odoo_env)):  # noqa: B008
     """Returns the language according to the available languages in Odoo and the
     Accept-Language header.
 
@@ -72,7 +72,7 @@ async def get_lang(env: Annotated[Environment, Depends(odoo_env)]):
 
 @router.get("/demo/who_ami")
 async def who_ami(
-    partner: Annotated[Partner, Depends(authenticated_partner)]
+    partner: Partner = Depends(authenticated_partner),
 ) -> DemoUserInfo:
     """Who am I?
 
@@ -88,7 +88,7 @@ async def who_ami(
     dependencies=[Depends(authenticated_partner)],
 )
 async def endpoint_app_info(
-    endpoint: Annotated[FastapiEndpoint, Depends(fastapi_endpoint)],
+    endpoint: FastapiEndpoint = Depends(fastapi_endpoint),
 ) -> DemoEndpointAppInfo:
     """Returns the current endpoint configuration"""
     # This method show you how to get access to current endpoint configuration

@@ -37,15 +37,15 @@ def authenticated_partner_impl() -> Partner:
 
 
 def authenticated_partner_env(
-    partner: Annotated[Partner, Depends(authenticated_partner_impl)]
+    partner: Partner = Depends(authenticated_partner_impl),
 ) -> Environment:
     """Return an environment with the authenticated partner id in the context"""
     return partner.with_context(authenticated_partner_id=partner.id).env
 
 
 def authenticated_partner(
-    partner: Annotated[Partner, Depends(authenticated_partner_impl)],
-    partner_env: Annotated[Environment, Depends(authenticated_partner_env)],
+    partner: Partner = Depends(authenticated_partner_impl),
+    partner_env: Environment = Depends(authenticated_partner_env),
 ) -> Partner:
     """If you need to get access to the authenticated partner into your
     endpoint, you can add a dependency into the endpoint definition on this
@@ -60,7 +60,7 @@ def authenticated_partner(
 
 
 def paging(
-    page: Annotated[int, Query(gte=1)] = 1, page_size: Annotated[int, Query(gte=1)] = 80
+    page: Annotated[int, Query(1, gte=1)], page_size: Annotated[int, Query(80, gte=1)]
 ) -> Paging:
     """Return a Paging object from the page and page_size parameters"""
     return Paging(limit=page_size, offset=(page - 1) * page_size)
@@ -105,24 +105,24 @@ def fastapi_endpoint_id() -> int:
 
 
 def fastapi_endpoint(
-    _id: Annotated[int, Depends(fastapi_endpoint_id)],
-    env: Annotated[Environment, Depends(odoo_env)],
+    _id: int = Depends(fastapi_endpoint_id),
+    env: Environment = Depends(odoo_env),
 ) -> "FastapiEndpoint":
     """Return the fastapi.endpoint record"""
     return env["fastapi.endpoint"].browse(_id)
 
 
 def accept_language(
-    accept_language: Annotated[
-        Optional[str],
-        Header(
-            alias="Accept-Language",
-            description="The Accept-Language header is used to specify the language "
+    accept_language: Optional[str] = Header(
+        default=None,
+        alias="Accept-Language",
+        description=(
+            "The Accept-Language header is used to specify the language "
             "of the content to be returned. If a language is not available, the "
-            "server will return the content in the default language.",
+            "server will return the content in the default language."
         ),
-    ] = None,
-) -> str:
+    )
+) -> Optional[str]:
     """This dependency is used at application level to document the way the language
     to use for the response is specified. The header is processed outside of the
     fastapi app to initialize the odoo environment with the right language.
