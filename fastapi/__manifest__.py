@@ -28,6 +28,7 @@
             "ujson",
             "a2wsgi",
             "parse-accept-language",
+            "httpx",
         ]
     },
     "development_status": "Beta",
